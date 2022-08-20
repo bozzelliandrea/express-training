@@ -1,0 +1,21 @@
+{
+  "name": "05_todo_list_with_mongo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js",
+    "serve": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bozzelliandrea/express-training.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bozzelliandrea/express-training/issues"
+  },
+  "homepage": "https://github.com/bozzelliandrea/express-training#readme"
+}
