@@ -1,0 +1,21 @@
+{
+  "name": "02_built_in_module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "serve": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bozzelliandrea/express-training.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bozzelliandrea/express-training/issues"
+  },
+  "homepage": "https://github.com/bozzelliandrea/express-training#readme"
+}

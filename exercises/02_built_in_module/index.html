@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        textarea {
+            margin-top: 5vh;
+            height: 50vh;
+            width: 90%;
+        }
+    </style>
+    <script>
+        function load() {
+            fetch('http://localhost:3000/read', {
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                method: "GET",
+            }).then(response => response.text()).then(text => {
+                document.getElementById("textFileContent").innerHTML = text
+            });
+        }
+
+        function onClick() {
+            const value = document.getElementById("inputValue").value;
+            if (value == null) {
+                console.log("Value is null")
+                return;
+            }
+
+            fetch('http://localhost:3000/add', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify({value: value})
+            }).then(r => {
+                load()
+                document.getElementById("inputValue").value = "";
+            });
+        }
+
+        load();
+    </script>
+</head>
+<body>
+<h1>My Header</h1>
+<p>My paragraph.</p>
+<input id="inputValue"/>
+<button onclick="onClick()">Add Line</button>
+<br/>
+<textarea id="textFileContent"></textarea>
+</body>
+</html>
