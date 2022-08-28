@@ -1,0 +1,21 @@
+{
+  "name": "06_http_requests",
+  "version": "1.0.0",
+  "description": "Http Requests between microservices",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start:index": "node index",
+    "star:user": "node user.microservice"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bozzelliandrea/express-training.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bozzelliandrea/express-training/issues"
+  },
+  "homepage": "https://github.com/bozzelliandrea/express-training#readme"
+}

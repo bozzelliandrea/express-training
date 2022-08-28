@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express();
-const fs = require('fs');
+const fs = require('node:fs');
 
 app.use(express.json());
 
