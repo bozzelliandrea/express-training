@@ -10,7 +10,7 @@ const options = {
 const user_option = {
     hostname: 'localhost',
     port: '3000',
-    path: '/user',
+    path: '/users',
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
