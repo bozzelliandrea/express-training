@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const {generateToken} = require("07_jwt_auth/common/auth");
 const userRepository = require('../repositories/user.repository');
 const AuthError = require("../errors/auth.error");
 const crypto = require('node:crypto');
@@ -44,7 +43,7 @@ class AuthService {
             throw new AuthError(401, "Wrong password, login failed!");
         }
 
-        return generateToken(user.username);
+        return this.#generateToken(user.username);
     }
 
     #hashPassword(password) {
