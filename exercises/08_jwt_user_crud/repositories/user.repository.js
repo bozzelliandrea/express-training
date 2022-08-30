@@ -5,7 +5,7 @@ class UserRepository {
     static #SELECT_USER_BY_USERNAME_AND_EMAIL = 'SELECT * FROM users WHERE username=$1 OR email=$2';
     static #SELECT_USER_BY_USERNAME = 'SELECT * FROM users WHERE username=$1';
     static #SELECT_ALL_USERS = 'SELECT id,username,email FROM users';
-    static #INSERT_USER = 'INSERT INTO users(username, email, password) VALUES($1, $2, $3)';
+    static #INSERT_USER = 'INSERT INTO users(username, email, password, salt) VALUES($1, $2, $3, $4)';
 
     #client = undefined;
 
