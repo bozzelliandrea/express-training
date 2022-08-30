@@ -3,6 +3,7 @@ const {Client: postgres} = require("pg");
 class UserRepository {
 
     static #SELECT_USER_BY_USERNAME_AND_EMAIL = 'SELECT * FROM users WHERE username=$1 OR email=$2';
+    static #SELECT_USER_BY_USERNAME = 'SELECT * FROM users WHERE username=$1';
     static #INSERT_USER = 'INSERT INTO users(username, email, password) VALUES($1, $2, $3)';
 
     #client = undefined;
@@ -24,7 +25,13 @@ class UserRepository {
     }
 
     async findUser(username, email) {
-        const result = await this.#client.query(UserRepository.#SELECT_USER_BY_USERNAME_AND_EMAIL, [username, email])
+        let result;
+
+        if (email)
+            result = await this.#client.query(UserRepository.#SELECT_USER_BY_USERNAME_AND_EMAIL, [username, email]);
+        else
+            result = await this.#client.query(UserRepository.#SELECT_USER_BY_USERNAME, [username]);
+
         return result.rows;
     }
 

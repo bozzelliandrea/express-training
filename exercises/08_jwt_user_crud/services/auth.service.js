@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const {generateToken} = require("07_jwt_auth/common/auth");
 const userRepository = require('../repositories/user.repository');
+const AuthError = require("../errors/auth.error");
 
 class AuthService {
 
@@ -8,8 +9,8 @@ class AuthService {
         const result = await userRepository.findUser(username, email);
 
         if (result.length > 0) {
-            console.error("User already registered")
-            throw new Error("User already registered");
+            console.error("User already registered");
+            throw new AuthError(500, "User already registered");
         }
 
         const response = await userRepository.create({
@@ -26,9 +27,22 @@ class AuthService {
             : {};
     }
 
-    login(username, password) {
+    async login(username, password) {
+        const result = await userRepository.findUser(username);
 
-        return generateToken(username);
+        if (result.length === 0) {
+            console.error("User not found");
+            throw new AuthError(404, "User not found");
+        }
+
+        const user = result[0];
+
+        if (user.password !== password) {
+            console.error("Wrong password");
+            throw new AuthError(401, "Wrong password, login failed!");
+        }
+
+        return generateToken(user.username);
     }
 
     #generateToken(username) {
