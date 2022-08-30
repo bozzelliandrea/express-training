@@ -1,6 +1,6 @@
-const loggerMiddleware = (req, res, next) => {
-    console.info(`${new Date()}: \t ${req.method} \t ${req.path}`);
+const logger = require('../commons/logger');
+
+module.exports = function (req, res, next) {
+    logger(`${req.method} \t ${req.path}`);
     next();
 }
-
-module.exports = loggerMiddleware

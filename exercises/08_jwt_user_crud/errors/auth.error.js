@@ -6,9 +6,7 @@ class AuthError extends Error {
         Error.captureStackTrace(this, this.constructor);
 
         this.name = this.constructor.name;
-
-        this.message = message || 'Internal Server Error.';
-
+        this.message = message || 'Internal Server Error';
         this.code = code || 500;
     }
 }

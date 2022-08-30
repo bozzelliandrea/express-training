@@ -9,7 +9,6 @@ class AuthService {
         const result = await userRepository.findUser(username, email);
 
         if (result.length > 0) {
-            console.error("User already registered");
             throw new AuthError(500, "User already registered");
         }
 
@@ -31,14 +30,12 @@ class AuthService {
         const result = await userRepository.findUser(username);
 
         if (result.length === 0) {
-            console.error("User not found");
             throw new AuthError(404, "User not found");
         }
 
         const user = result[0];
 
         if (user.password !== password) {
-            console.error("Wrong password");
             throw new AuthError(401, "Wrong password, login failed!");
         }
 

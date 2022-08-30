@@ -4,6 +4,7 @@ class UserRepository {
 
     static #SELECT_USER_BY_USERNAME_AND_EMAIL = 'SELECT * FROM users WHERE username=$1 OR email=$2';
     static #SELECT_USER_BY_USERNAME = 'SELECT * FROM users WHERE username=$1';
+    static #SELECT_ALL_USERS = 'SELECT id,username,email FROM users';
     static #INSERT_USER = 'INSERT INTO users(username, email, password) VALUES($1, $2, $3)';
 
     #client = undefined;
@@ -22,6 +23,11 @@ class UserRepository {
             console.log("DB Connection shutting down");
             await this.#client.end();
         })
+    }
+
+    async findAll() {
+        const users = await this.#client.query(UserRepository.#SELECT_ALL_USERS);
+        return users.rows;
     }
 
     async findUser(username, email) {
