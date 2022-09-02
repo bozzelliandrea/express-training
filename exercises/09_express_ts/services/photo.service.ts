@@ -3,6 +3,8 @@ import {PostgresDataSource} from "../db/postgres.datasource";
 import {Photo} from "../db/entity/photo.entity";
 import {Repository} from "typeorm/repository/Repository";
 import {IncomingMessage} from "http";
+import {BaseError} from "../error/base.error";
+import {ExternalServiceError} from "../error/external_service.error";
 
 export class PhotoService {
 
@@ -22,10 +24,22 @@ export class PhotoService {
         return await this._repository.save(photo);
     }
 
+    public async findAll(): Promise<Photo[]> {
+        let res;
+        try {
+            res = await this._repository.find();
+        } catch (e) {
+            throw new BaseError(e.name);
+        }
+        return res
+    }
+
     private getPhotoURL(): Promise<string> {
-        return new Promise<string>((resolve, reject) => {
+        return new Promise<string>((resolve: Function, reject: Function) => {
             const req = https.get(this._randomPhotoURL, (res: IncomingMessage) => {
                 resolve(res.headers["location"])
+            }).on('error', (err: Error) => {
+                reject(new ExternalServiceError("photo generator is not available"))
             });
             req.end();
         });

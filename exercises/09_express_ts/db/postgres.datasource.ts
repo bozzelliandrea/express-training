@@ -1,5 +1,4 @@
 import {DataSource} from "typeorm";
-import {Photo} from "./entity/photo.entity";
 
 export const PostgresDataSource = new DataSource({
     type: "postgres",
@@ -10,5 +9,5 @@ export const PostgresDataSource = new DataSource({
     database: process.env.PG_DB_NAME,
     synchronize: true,
     logging: true,
-    entities: [Photo],
+    entities: ['db/entity/*.entity.ts'],
 })
