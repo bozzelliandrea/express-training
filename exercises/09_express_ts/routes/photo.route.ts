@@ -9,7 +9,7 @@ router.route('/')
     .post((req: Request, res: Response, next: NextFunction) => {
         service.create(req.body.name, req.body.description)
             .then((result: Photo) => {
-                res.locals.response = result;
+                res.locals._response = result;
                 next();
             })
             .catch((err: Error) => next(err))

@@ -5,6 +5,8 @@ dotenv.config({path: './gateway.env'});
 import express, {Express} from 'express';
 import http, {RequestOptions} from 'http';
 
+const CONFIG = [];
+
 const gateway: Express = express();
 gateway.use(express.json());
 gateway.get('/photo', (req, res) => {

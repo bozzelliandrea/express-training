@@ -10,7 +10,7 @@ export class BaseError extends Error {
         super(description);
         Error.captureStackTrace(this);
 
-        this.name = name;
+        this.name = name || Error.name;
         this.code = code || HttpCode.INTERNAL_SERVER;
         this.description = description || HttpCode[HttpCode.INTERNAL_SERVER];
     }
