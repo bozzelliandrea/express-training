@@ -1,5 +1,6 @@
 import {NextFunction, Request, Response, Router} from "express";
 import {AuthService} from "../services/auth.service";
+import authVerifyMiddleware from "../middleware/auth-verify.middleware";
 
 const router = Router();
 const authService = new AuthService();
@@ -21,7 +22,7 @@ router.post('/login', (req: Request, res: Response, next: NextFunction) => {
         }).catch((err) => next(err));
 })
 
-router.get('/refresh', (req: Request, res: Response, next: NextFunction) => {
+router.get('/refresh', authVerifyMiddleware, (req: Request, res: Response, next: NextFunction) => {
     authService.refresh(req.headers['authorization'])
         .then(token => {
             res.locals._token = token;

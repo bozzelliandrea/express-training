@@ -8,6 +8,8 @@ import authRoute from "../routes/auth.route";
 import responseMiddleware from "../middleware/response.middleware";
 import errorMiddleware from "../middleware/error.middleware";
 import userRoute from "../routes/user.route";
+import authTokenizer from "../middleware/auth-tokenizer.middleware";
+
 
 PostgresDataSource.initialize().then(() => {
     const app = express();
@@ -15,6 +17,7 @@ PostgresDataSource.initialize().then(() => {
     app.use(express.json());
     app.use('/auth', authRoute);
     app.use('/users', userRoute)
+    app.use(authTokenizer)
     app.use(responseMiddleware);
     app.use(errorMiddleware);
 

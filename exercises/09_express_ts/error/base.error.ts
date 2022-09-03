@@ -1,4 +1,4 @@
-import {HttpCode} from "../common/http_code.enum";
+import {HttpCode} from "../common/http-code.enum";
 
 export class BaseError extends Error {
 
