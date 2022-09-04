@@ -12,10 +12,10 @@ export class User {
     @Column()
     public email: string;
 
-    @Column()
+    @Column({nullable: true})
     public password: string;
 
-    @Column()
+    @Column({nullable: true})
     public salt: string;
 
     constructor(username: string, email: string) {

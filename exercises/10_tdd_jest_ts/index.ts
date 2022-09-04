@@ -39,14 +39,7 @@ function main(): Promise<number> {
             }
 
             const rowSplitted = line.split(",");
-            repository.insert(new User(rowSplitted[1] + rowSplitted[2], rowSplitted[3]))
-                .then(() => {
-                    console.log("Row Saved")
-                })
-                .catch(err => {
-                    console.log(err)
-                });
-
+            await repository.insert(new User(rowSplitted[1] + rowSplitted[2], rowSplitted[3]))
             count++;
         }
         console.log("CSV Reader End");
